@@ -1,0 +1,66 @@
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.*;
+public class gui 
+{
+	public static void main(String[] args)throws Exception
+	{
+		Addition obj=new Addition();
+		 
+	}
+}
+class Addition  implements ActionListener
+{
+	
+	JFrame f;
+	JButton b;
+	JLabel l1;
+	JLabel l2;
+	JLabel l3;
+	JTextField tf1;
+	JTextField tf2;
+	
+	
+	public Addition()
+	{
+		f=new JFrame("adding number");
+		l1=new JLabel("Enter the first number");
+		l2=new JLabel("Enter the second number");
+		tf1=new JTextField("");
+		tf2=new JTextField("");
+		l3=new JLabel("");
+		b=new JButton("ok");
+		b.addActionListener(this);
+		
+		l1.setBounds(50,50,150,20);
+		l2.setBounds(50,100,150,20);
+		tf1.setBounds(200,50,50,20);
+		tf2.setBounds(200,100,50,20);
+		l3.setBounds(150,200,100,60);
+		b.setBounds(150,150,50,40);
+		f.add(l1);
+		f.add(l2);
+		f.add(tf1);
+		f.add(tf2);
+		f.add(b);
+		f.add(l3);
+		b.addActionListener(this);
+		
+		f.setLayout(null);
+		f.setVisible(true);
+		f.setSize(400,400);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			int a=Integer.parseInt(tf1.getText());
+			int b=Integer.parseInt(tf2.getText());
+			int c;
+			c=a+b;
+			l3.setText("sum is ="+c);
+		}
+	
+}
