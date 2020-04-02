@@ -1,0 +1,77 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+
+class pass
+{
+	
+}
+class nextpage implements ActionListener
+{
+	JFrame f=new JFrame("login");
+	JButton b=new JButton("login");
+	JLabel l1=new JLabel("username");
+	JLabel l2=new JLabel("password");
+	JFrame fj=new JFrame("new");
+	JLabel lb = new JLabel("welcome");
+	JLabel lk = new JLabel("fuckoff");
+	JPasswordField ps=new JPasswordField();
+	JTextField tf1=new JTextField();
+
+	public nextpage()
+	{
+		
+		l1.setBounds(50,100,100,40);
+		l2.setBounds(50,150,100,40);
+		tf1.setBounds(130,110,80,20);
+		ps.setBounds(130,160,80,20);
+		b.setBounds(130,250,80,20);
+		lb.setBounds(130,250,80,20);
+		lk.setBounds(130,250,80,20);
+		f.add(b);
+		f.add(l1);
+		f.add(l2);
+		f.add(ps);
+		f.add(tf1);
+		b.addActionListener(this);
+		//ps.addActionListener(this);
+		f.setLayout(null);
+		f.setSize(400,400);
+		f.setVisible(true);
+		
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		
+		String pass=ps.getText();
+		if(pass.equals("123"))
+		{
+		
+		fj.add(lb);
+		f.setVisible(false);
+		fj.setLayout(null);
+		fj.setSize(400,400);
+		fj.setVisible(true);
+		}
+		else
+		{
+	
+		fj.add(lk);
+		
+		f.setVisible(false);
+		fj.setLayout(null);
+		fj.setSize(400,400);
+		fj.setVisible(true);
+		}
+	}
+}
+public class login
+{
+	public static void main(String[] args)
+	{
+		nextpage  obj=new nextpage();
+		
+	}
+	
+	
+}
