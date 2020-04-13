@@ -1,0 +1,102 @@
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+
+class sow implements ActionListener
+{
+	JFrame f=new JFrame("my app");
+	JPanel panel=new JPanel();
+	Canvas can=new Drawing();
+	JMenuBar mb=new JMenuBar();
+	JMenu setting,code,profile;
+	JMenuItem privacy,security,logout,write,save;
+	JPanel p1=new JPanel();
+	JPanel p2=new JPanel();
+	JTextArea tf=new JTextArea();
+		
+	
+	sow()
+	{
+		
+		panel.setBounds(20,10,1250,300);
+		panel.setBackground(Color.gray);
+		tf.setBounds(20,350,600,300);
+		can.setSize(400,400);
+		privacy=new JMenuItem("Privacy");
+		security=new JMenuItem("Security");
+		logout=new JMenuItem("Logout");
+		write=new JMenuItem("write");
+		save=new JMenuItem("Save");
+		setting=new JMenu("Setting______");
+		code=new JMenu("Code_______");
+		profile=new JMenu("Profile______");
+		//Action listenner
+		logout.addActionListener(this);
+		write.addActionListener(this);
+		save.addActionListener(this);
+		
+		
+		setting.add(privacy);
+		setting.add(security);
+		setting.add(logout);
+		code.add(write);
+		code.add(save);
+	
+		//adding things to frame
+		mb.add(setting);
+		mb.add(code);
+		mb.add(profile);
+		mb.setBounds(20,320,1250,25);
+		
+		panel.add(can);
+		f.add(panel);
+		f.add(mb);
+		//f.setJMenuBar(mb);
+		f.setSize(1300,800);
+		//f.pack();
+		f.setLayout(null);
+		f.setVisible(true);
+			
+	
+	
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==logout)
+		{
+			f.setVisible(false);
+		}
+		if(e.getSource()==write)
+		{
+			
+			f.add(tf);
+		}
+		if(e.getSource()==save)
+		{
+			String data=tf.getText();
+			
+		}
+	}	
+	 
+	public void paint(Graphics g)
+	{
+		g.drawOval(600,200,200,300);
+		
+	}
+}
+
+public class layout
+{
+	public static void main(String[] args)
+	{
+		sow obj1=new sow();
+	}
+}
