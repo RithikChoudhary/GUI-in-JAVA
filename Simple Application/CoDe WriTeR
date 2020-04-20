@@ -1,0 +1,187 @@
+import java.awt.Graphics;
+import java.io.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+class sow implements ActionListener
+{
+	JFrame f=new JFrame("my app");
+	JPanel panel=new JPanel();
+	Canvas can=new Drawing();
+	JMenuBar mb=new JMenuBar();
+	JMenu setting,code,profile;
+	JMenuItem privacy,security,logout,write,save,open;
+	JPanel p1=new JPanel();
+	JPanel p2=new JPanel();
+	JTextArea tf=new JTextArea();
+	JButton bsave=new JButton("save");
+	JTextField tname=new JTextField();
+	JFrame f1=new JFrame("save");	
+	
+	sow()
+	{
+		
+		panel.setBounds(20,10,1250,300);
+		panel.setBackground(Color.yellow);
+		tf.setBounds(20,350,1250,300);
+		can.setSize(400,400);
+		privacy=new JMenuItem("Privacy");
+		security=new JMenuItem("Security");
+		logout=new JMenuItem("Logout");
+		write=new JMenuItem("write");
+		save=new JMenuItem("Save");
+		open=new JMenuItem("open");
+		setting=new JMenu("Setting______");
+		code=new JMenu("Code_______");
+		profile=new JMenu("Profile______");
+		//Action listenner
+		logout.addActionListener(this);
+		write.addActionListener(this);
+		save.addActionListener(this);
+		open.addActionListener(this);
+		
+		
+		setting.add(privacy);
+		setting.add(security);
+		setting.add(logout);
+		code.add(write);
+		code.add(save);
+		code.add(open);
+	
+		//adding things to frame
+		mb.add(setting);
+		mb.add(code);
+		mb.add(profile);
+		mb.setBounds(20,320,1250,25);
+		
+		panel.add(can);
+		
+		f.add(panel);
+		f.add(mb);
+		//f.setJMenuBar(mb);
+		f.getContentPane().setBackground(Color.BLACK);
+		f.setSize(1300,800);
+		//f.pack();
+		f.setLayout(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		f.setVisible(true);
+			
+	
+	
+	}
+	String saving()
+	{
+		
+		
+		JLabel l1=new JLabel("enter the name of file");
+		
+		String ext=tname.getText();
+		
+		l1.setBounds(10,20,150,40);
+		tname.setBounds(180,20,100,30);
+		bsave.setBounds(280,20,50,30);
+		
+		bsave.addActionListener(this);
+		
+		f1.add(bsave);
+		f1.add(tname);
+		f1.add(l1);
+		f1.setSize(400,150);
+		f1.setLayout(null);
+		f1.setVisible(true);
+		
+		return ext;
+	}
+	void file_saving() 	
+	{
+		String extention=saving();  
+		String data=tf.getText();
+		
+		FileWriter fw;
+		try
+		{
+			fw=new FileWriter(extention);
+			System.out.println("file created "+extention);
+			//for(int i=0;i<data.length();i++)
+			{
+				fw.write(data);
+			}
+			fw.close();
+			System.out.println("successfull");
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("not created");
+		}
+		
+	}
+	void FileChooser_open()
+	{
+		JFileChooser opening_file=new JFileChooser();
+		int i=opening_file.showOpenDialog(null);    
+    	if(i==JFileChooser.APPROVE_OPTION)
+		{    
+	        File f=opening_file.getSelectedFile();    
+        	String filepath=f.getPath();    
+        	try
+			{  
+        		BufferedReader br=new BufferedReader(new FileReader(filepath));    
+        		String s1="",s2="";                         
+        		while((s1=br.readLine())!=null)
+				{    
+        			s2+=s1+"\n";    
+        		}    
+        		tf.setText(s2);    
+        		br.close();    
+        	}
+			catch (Exception ex) {ex.printStackTrace();}                 
+    }    
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==logout)
+		{
+			f.setVisible(false);
+		}
+		if(e.getSource()==write)
+		{
+			
+			f.add(tf);
+		}
+		if(e.getSource()==save)
+		{
+			saving();
+			
+		}
+		if(e.getSource()==bsave)
+		{
+			file_saving();
+			f1.setVisible(false);
+		}
+		if(e.getSource()==open)
+		{
+			
+			FileChooser_open();
+			
+		}
+	}	
+	 
+	public void paint(Graphics g)
+	{
+		g.drawOval(600,200,200,300);
+		Toolkit t=Toolkit.getDefaultToolkit();  
+        Image i=t.getImage("hii.jpg");  
+        g.drawImage(i, 120,100,null);  
+		
+	}
+}
+
+public class layout
+{
+	public static void main(String[] args)
+	{
+		sow obj1=new sow();
+	}
+}
